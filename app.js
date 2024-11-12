@@ -1,4 +1,11 @@
 
+// function getHumanChoice(){
+//     choice = prompt("Enter your attack (rock, paper, or scissors)");
+//     choice = choice.trim().toLowerCase();
+//     return choice;
+// }
+
+
 function getComputerChoice(){
     random = Math.floor(Math.random() * 3) + 1;
     if (random === 1){
@@ -10,11 +17,6 @@ function getComputerChoice(){
     else return "scissors";
 }
 
-function getHumanChoice(){
-    choice = prompt("Enter your attack (rock, paper, or scissors)");
-    choice = choice.trim().toLowerCase();
-    return choice;
-}
 
 
 
@@ -40,16 +42,17 @@ function playRound(user, ai){
     }
 
     if (winner === 1){
-        console.log(`You Win! ${user} beats ${ai}`);
+        message.textContent = `You Win! ${user} beats ${ai}`;
+        userScore.textContent = parseInt(userScore.textContent) + 1;
+
     }
     else if (winner === 2){
-        console.log(`You Lose! ${ai} beats ${user}`);
+        message.textContent = `You Lose! ${ai} beats ${user}`;
+        aiScore.textContent = parseInt(aiScore.textContent) + 1;
     }
     else {
-        console.log(`Tie. ${user} matches ${ai}`);
+        message.textContent = `Tie. ${user} matches ${ai}`;
     }
-    console.log(`user = ${user}, ai = ${ai}`);
-    return winner;
 }
 
 const attacks = document.querySelector(".attacks");
@@ -70,6 +73,19 @@ function playRoundButton(e){
     }
     playRound(attack, getComputerChoice());
 }
+
+const userScore = document.querySelector(".user");
+const aiScore = document.querySelector(".ai");
+const message = document.querySelector(".message");
+const reset = document.querySelector(".reset");
+
+
+reset.addEventListener("click", () => {
+    userScore.textContent = 0;
+    aiScore.textContent = 0;
+})
+
+
 
 // function playGame(rounds){
 
