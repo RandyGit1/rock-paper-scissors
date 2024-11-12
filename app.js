@@ -58,6 +58,7 @@ function playRound(user, ai){
         if (roundSelect.value === aiScore.textContent){
             userScore.style.color = "red";
             aiScore.style.color = "green";
+            message.style.fontSize = "100px";
             message.textContent = `LOSER!`;
         }
         else {
