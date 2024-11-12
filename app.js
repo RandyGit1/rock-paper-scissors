@@ -48,48 +48,68 @@ function playRound(user, ai){
     else {
         console.log(`Tie. ${user} matches ${ai}`);
     }
-
+    
     return winner;
 }
 
-function playGame(rounds){
+const attacks = document.querySelector(".attacks");
+console.log(attacks);
 
-    if (rounds % 2 === 0){
-        rounds += 1;
+attacks.addEventListener("click", playRoundButton);
+
+function playRoundButton(e){
+    const button = e.target;
+    let attack;
+    if (button.class === 'rock'){
+        attack = "rock";
     }
-    humanScore = computerScore = 0;
-
-    for (let i = 1; i <= rounds; i++){
-        console.log(`Round ${i}\n`);
-        ai = getComputerChoice();
-
-        do{
-            user = getHumanChoice();
-            if (user !== "rock" && user !== "paper" && user !== "scissors"){
-                alert("Invalid attack. Try again");
-            }
-        }
-        while (user !== "rock" && user !== "paper" && user !== "scissors");
-
-        winner = playRound(user, ai);
-        if (winner === 1){
-            humanScore += 1;
-        }
-        else if (winner === 2){
-            computerScore += 1;
-        }
-        else {
-            i -= 1;
-        }
-    }
-
-    if (humanScore > computerScore){
-        console.log("WINNER");
+    else if (button.class === 'paper') {
+        attack = 'paper';
     }
     else {
-        console.log("LOSER!");
+        attack = 'scissors';
     }
 
+    playRound(attack, getComputerChoice());
 }
 
-playGame(5);
+// function playGame(rounds){
+
+//     if (rounds % 2 === 0){
+//         rounds += 1;
+//     }
+//     humanScore = computerScore = 0;
+
+//     for (let i = 1; i <= rounds; i++){
+//         console.log(`Round ${i}\n`);
+//         ai = getComputerChoice();
+
+//         do{
+//             user = getHumanChoice();
+//             if (user !== "rock" && user !== "paper" && user !== "scissors"){
+//                 alert("Invalid attack. Try again");
+//             }
+//         }
+//         while (user !== "rock" && user !== "paper" && user !== "scissors");
+
+//         winner = playRound(user, ai);
+//         if (winner === 1){
+//             humanScore += 1;
+//         }
+//         else if (winner === 2){
+//             computerScore += 1;
+//         }
+//         else {
+//             i -= 1;
+//         }
+//     }
+
+//     if (humanScore > computerScore){
+//         console.log("WINNER");
+//     }
+//     else {
+//         console.log("LOSER!");
+//     }
+
+// }
+
