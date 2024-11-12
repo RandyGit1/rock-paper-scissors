@@ -48,28 +48,26 @@ function playRound(user, ai){
     else {
         console.log(`Tie. ${user} matches ${ai}`);
     }
-    
+    console.log(`user = ${user}, ai = ${ai}`);
     return winner;
 }
 
 const attacks = document.querySelector(".attacks");
-console.log(attacks);
 
 attacks.addEventListener("click", playRoundButton);
 
 function playRoundButton(e){
     const button = e.target;
     let attack;
-    if (button.class === 'rock'){
+    if (button.className === 'rock'){
         attack = "rock";
     }
-    else if (button.class === 'paper') {
+    else if (button.className === 'paper') {
         attack = 'paper';
     }
     else {
         attack = 'scissors';
     }
-
     playRound(attack, getComputerChoice());
 }
 
