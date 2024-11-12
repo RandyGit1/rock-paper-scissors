@@ -42,13 +42,27 @@ function playRound(user, ai){
     }
 
     if (winner === 1){
-        message.textContent = `You Win! ${user} beats ${ai}`;
         userScore.textContent = parseInt(userScore.textContent) + 1;
+        if (roundSelect.value === userScore.textContent){
+            userScore.style.color = "green";
+            aiScore.style.color = "red";
+            message.textContent = `WINNER!`;
+        }
+        else {
+            message.textContent = `You Win! ${user} beats ${ai}`;
+        }
 
     }
     else if (winner === 2){
-        message.textContent = `You Lose! ${ai} beats ${user}`;
         aiScore.textContent = parseInt(aiScore.textContent) + 1;
+        if (roundSelect.value === aiScore.textContent){
+            userScore.style.color = "red";
+            aiScore.style.color = "green";
+            message.textContent = `LOSER!`;
+        }
+        else {
+            message.textContent = `You Lose! ${ai} beats ${user}`;
+        }
     }
     else {
         message.textContent = `Tie. ${user} matches ${ai}`;
@@ -78,6 +92,7 @@ const userScore = document.querySelector(".user");
 const aiScore = document.querySelector(".ai");
 const message = document.querySelector(".message");
 const reset = document.querySelector(".reset");
+const roundSelect = document.querySelector("#round-select");
 
 
 reset.addEventListener("click", () => {
